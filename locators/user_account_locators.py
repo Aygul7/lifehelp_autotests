@@ -33,4 +33,17 @@ class UserAccountLocators:
     SUCCESSFUL_SENT_LETTER_MSG = (By.CSS_SELECTOR, ".auth__enter-success-send")
     UPLOAD_PHOTO_FIELD = (By.CSS_SELECTOR, ".account__my-account-file-upload.js-file-upload")
     USER_AVATAR = (By.CSS_SELECTOR,".page-header__user-name")
-    # UPLOAD_PHOTO_FIELD = (By.CSS_SELECTOR, "input[type=file]")
+
+
+    MY_DOCTOR_NAME_USER_ACCOUNT = (By.XPATH, "//div[@class='account__my_doctor-text']//h4[contains(text(),"
+                                             "'Имя Отчество')]")
+    DOCTOR_NAME_CHAT_TITLE_USER_ACCOUNT = (By.XPATH, "//h3[contains(text(),'Имя Отчество')]")
+    DOCTOR_NAME_TERMINATED_SESSION_USER_ACCOUNT = (By.XPATH, "(//h4[@class='account__my-notes-results-card-user-name']"
+                                                             "[contains(text(),'Имя Отчество')])[3]")
+    ACTIVATE_CERTIFICATE_TITLE_MY_SCHEDULE = (By.CSS_SELECTOR, ".page-header__user.js-open-modal")
+    MODAL_TITLE_ACTIVATE_CERTIFICATE = (By.CSS_SELECTOR, "div[class='certificate__form-title-wrapper'] h1")
+
+    PAYMENT_HISTORY_TITLE = (By.XPATH, "//a[contains(text(),'История платежей')]")
+    DOCTOR_NAME_PAYMENT_HISTORY = (By.XPATH, "(//div[@class='account__my-history-table-specialist']"
+                                             "[contains(text(),'Имя Отчество')])[1]")
+    DOCTOR_NAME_REGULAR_SESSIONS_PAGE = (By.CSS_SELECTOR, "div[class='regular-schedule__doctor-info'] h4")

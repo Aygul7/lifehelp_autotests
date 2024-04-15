@@ -6,8 +6,8 @@ from locators.taplink_locators import TaplinkLocators
 # 1 - Проверка, клик на кнопку "Записаться к психологу" ведет на главную страницу ленда veb.life-help.pro
 def test_create_order_btn_leads_veb_lh_page_taplink(taplink_page):
     taplink_page.click_to_create_order_btn_taplink()
-    taplink_page.get_url('https://veb.life-help.pro/?roistat=Instagram_smm+LifeHelp_Taplink&utm_campaign=smm+'
-                         'LifeHelp&utm_content=Taplink&utm_source=Instagram&utm_medium=Taplink')
+    taplink_page.get_url('https://lifehelp.pro/?roistat=Instagram_smm+LifeHelp_Taplink&utm_campaign=smm+LifeHelp&utm_'
+                         'content=Taplink&utm_source=Instagram&utm_medium=Taplink')
 
 # 2 - Проверка, клик на кнопку "Пройти тест на родительское выгорание" ведет на страницу mrqz с тестом
 def test_parental_burnout_test_btn_taplink(taplink_page):
@@ -39,14 +39,9 @@ def test_btn_become_psychologists_team_member_btn_taplink(taplink_page):
     taplink_page.click_to_become_team_psychologists_member_btn_taplink()
     taplink_page.verify_url_psychologists_questionnaire_page()
 
-# 8 - Проверка, клик на кнопку "Получить консультацию бесплатно" ведет на страницу mrqz с анкетой
-def test_get_free_counsulation_questionnaire_taplink(taplink_page):
-    taplink_page.click_to_get_free_consultation_button_taplink()
-    taplink_page.verify_url_questionnaire_page()
-
-
-
-    # taplink_page.get_url('https://life-help-roditel.mrqz.me/?roistat=Instagram_smm+LifeHelp_marquiz_roditel+vigoranie'
-    #                      '&utm_campaign=smm+LifeHelp&utm_medium=marquiz_roditel+vigoranie=&utm_source=Instagram&tpclid'
-    #                      '=facebook.PAAabbNtUe7s7U-9lF4ZdkavdAN4ryIbWyZEIi9sAtHUZn8dwG-RzN0rtcFmg')
-
+# 8 - Проверка, клик на кнопку "Записаться на бесплатную диагностику" ведет на страницу
+# https://lifehelp.pro/20mins?roistat=Instagram_smm+LifeHelp_Taplink_20min&utm_campaign=smm+LifeHelp&utm_content=
+# 20min&utm_source=Instagram&utm_medium=Taplink
+def test_btn_free_diagnostik_moves_to_lhpro_page(taplink_page):
+    taplink_page.click_to_free_daignostik_btn_taplink()
+    taplink_page.verify_url_lifehelp_pro_page()

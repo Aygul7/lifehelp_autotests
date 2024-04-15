@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 
 class PsychologistPageLocators:
 
-    PSYCHOLOGIST_ELENA_KALKAN_TITLE = (By.XPATH, "//h2[contains(text(),'Елена К.')]")
+    PSYCHOLOGIST_ELENA_KALKAN_TITLE = (By.XPATH, "//h2[contains(text(),'Елена Геннадьевна')]")
     FIRST_ORDER_KALKAN = (By.CSS_SELECTOR, "body > div:nth-child(4) > main:nth-child(2) > section:nth-child(2) >"
                                            " div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) >"
                                            " div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) >"
@@ -31,3 +31,7 @@ class PsychologistPageLocators:
     FOREIGN_CARD_BUTTON = (By.CSS_SELECTOR, "label[for='foreign']")
     PAYMENT_GREEN_BTN_ORDER_PAGE = (By.CSS_SELECTOR, "#payment__btn")
     NOT_INTERESTING_BTN = (By.CSS_SELECTOR, "#continue-payment")
+    PRICE_2950_DOCTOR_PAGE = (By.XPATH, "//span[contains(text(),'2950.00 ₽')]")
+    PRICE_4200_DOCTOR_PAGE = (By.XPATH, "//span[contains(text(),'4200.00 ₽')]")
+    PRICE_4850_DOCTOR_PAGE = (By.XPATH, "//span[contains(text(),'4850.00 ₽')]")
+    DOCTOR_NAME_DOCTOR_PAGE = (By.XPATH, "//h2[contains(text(),'Елена Геннадьевна')]")

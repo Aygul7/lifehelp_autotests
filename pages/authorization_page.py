@@ -2,6 +2,7 @@ from base.base_object import BaseObject
 from locators.authorization_locators import AuthorizationLocators
 import allure
 from support.assertions import Assertions
+from selenium.webdriver.common.keys import Keys
 
 
 
@@ -30,17 +31,17 @@ class AuthorizationPage(BaseObject, Assertions):
 
 # separate test
     def set_email_email(self):
-        self.set_value(AuthorizationLocators.EMAIL_PHONE_FIELD, 'sh.aygul@gmail.com')
+        self.set_value(AuthorizationLocators.EMAIL_PHONE_FIELD, 'test_user@gmail.com')
 
     def set_email_bitrix_email(self):
         self.set_value(AuthorizationLocators.EMAIL_PHONE_FIELD, 'bitrix@mail.ru')
 
     def set_phone_password_authorization(self):
-        self.set_value(AuthorizationLocators.EMAIL_PHONE_FIELD, '89274197879')
+        self.set_value(AuthorizationLocators.EMAIL_PHONE_FIELD, '79274117788')
 
     # separate test
     def set_email_psychologist(self):
-        self.set_value(AuthorizationLocators.EMAIL_PHONE_FIELD, '89520476828')
+        self.set_value(AuthorizationLocators.EMAIL_PHONE_FIELD, '79520445533')
 
     def set_email_not_existing_user(self):
         self.set_value(AuthorizationLocators.EMAIL_PHONE_FIELD, 'test_test@mail.ru')
@@ -68,6 +69,10 @@ class AuthorizationPage(BaseObject, Assertions):
     #     expected_result = third
     #     self.verify(expected_result, actual_result)
 
+    @allure.step('click to "get psychologist" button')
+    def click_get_psychologist_btn(self):
+        self.to_click(AuthorizationLocators.GET_PSYCHOLOGIST_BUTTON)
+
     @allure.step('verify url of authorization page')
     def verify_url_authorization_page(self):
         self.get_url('https://life-help.ru/auth/')
@@ -76,26 +81,41 @@ class AuthorizationPage(BaseObject, Assertions):
         self.get_url('https://life-help.ru/user/notes')
 
     @allure.step('all steps of login in one for user')
-    def login_user(self):
-        self.click_to_accept_cookies()
+    def login_user_email_password(self):
         self.click_to_login_button()
         self.click_to_login_w_password_button()
-        self.set_email('sh.aygul@gmail.com')
+        self.set_email('test_user@gmail.com')
+        self.set_password('lifehelp1@')
+        self.click_to_authorize_button()
+
+    @allure.step('all steps of login in one for user')
+    def login_user_bitrix_password(self):
+        self.click_to_login_button()
+        self.click_to_login_w_password_button()
+        self.set_email('bitrix@mail.ru')
+        self.set_password('lifehelp1@')
+        self.click_to_authorize_button()
+
+    @allure.step('all steps of login in one for user')
+    def login_user_phone_password(self):
+        self.click_to_login_button()
+        self.click_to_login_w_password_button()
+        self.set_email('79274117788')
         self.set_password('lifehelp1@')
         self.click_to_authorize_button()
 
     @allure.step('all steps of login in one for doctor')
-    def login_user(self):
+    def login_as_psychologist(self):
         self.click_to_accept_cookies()
         self.click_to_login_button()
         self.click_to_login_w_password_button()
-        self.set_email('aygul.shafigullina@life-help.ru')
+        self.set_email('79520445533')
         self.set_password('lifehelp1@')
         self.click_to_authorize_button()
 
     @allure.step('input phone number')
     def set_phone_number(self):
-        self.set_value(AuthorizationLocators.PHONE_FIELD, '89274197879')
+        self.set_value(AuthorizationLocators.PHONE_FIELD, '79274117788')
 
     @allure.step('input german phone number')
     def set_german_phone_number(self):
@@ -234,9 +254,9 @@ class AuthorizationPage(BaseObject, Assertions):
     def click_rapid_go_payment_btn(self):
         self.to_click(AuthorizationLocators.RAPID_GO_TO_PAYMENT_BTN)
 
-    @allure.step('click to "get psychologist" button')
-    def click_get_psychologist_btn(self):
-        self.to_click(AuthorizationLocators.GET_PSYCHOLOGIST_BUTTON)
+    # @allure.step('click to "get psychologist" button')
+    # def click_get_psychologist_btn(self):
+    #     self.to_click(AuthorizationLocators.GET_PSYCHOLOGIST_BUTTON)
 
     @allure.step('click to "get psychologist" button')
     def click_personal_questions_title(self):
@@ -254,9 +274,9 @@ class AuthorizationPage(BaseObject, Assertions):
     def click_buy_package(self):
         self.to_click(AuthorizationLocators.BUY_PACKAGE_BUTTON)
 
-    @allure.step('click to "buy package of 4 sessions" button')
-    def click_buy_package_4_sessions(self):
-        self.to_click(AuthorizationLocators.PACKAGE_4_SESSIONS_BUY_BUTTON)
+    # @allure.step('click to "buy package of 4 sessions" button')
+    # def click_buy_package_4_sessions(self):
+    #     self.to_click(AuthorizationLocators.PACKAGE_4_SESSIONS_BUY_BUTTON)
 
     @allure.step('click to "card RF" button')
     def click_card_rf_button_package(self):
@@ -270,24 +290,24 @@ class AuthorizationPage(BaseObject, Assertions):
     def click_pay_online_button_package(self):
         self.to_click(AuthorizationLocators.PAY_ONLINE_ORDER_BUTTON_PACKAGE)
 
-    @allure.step('click to "pay russian card" button on prodamus page')
-    def click_russian_card_prodamus_button(self):
-        self.to_click(AuthorizationLocators.PAY_RUSSIAN_CARD_PRODAMUS)
-
-    @allure.step('click to "not russian card" button on prodamus page')
-    def click_not_russian_card_prodamus_button(self):
-        self.to_click(AuthorizationLocators.NOT_RUSSAIN_CARD_PRODAMUS)
-
-    @allure.step('verify presence of Visa/Mastercard/KZT cards on the prodamus page')
-    def verify_vs_ms_kzt_card_prodamus_page(self):
-        actual_result = self.get_text_title_of_element(AuthorizationLocators.VISA_MS_KZT_CARD_PRODAMUS)
-        assert actual_result == 'Visa/Mastercard, KZT'
-
-    @allure.step('verify correct location on the cloudpayments page')
-    def verify_location_cloudpayments_page(self):
-        actual_result = self.get_text_title_of_element(AuthorizationLocators.PAYMENT_HEADING_TEXT)
-        assert actual_result == 'К оплате принимаются карты платежных систем VISA, Master Card и МИР. ' \
-                                'Для оплаты введите данные вашей банковской карты в соответствующие поля'
+    # @allure.step('click to "pay russian card" button on prodamus page')
+    # def click_russian_card_prodamus_button(self):
+    #     self.to_click(AuthorizationLocators.PAY_RUSSIAN_CARD_PRODAMUS)
+    #
+    # @allure.step('click to "not russian card" button on prodamus page')
+    # def click_not_russian_card_prodamus_button(self):
+    #     self.to_click(AuthorizationLocators.NOT_RUSSAIN_CARD_PRODAMUS)
+    #
+    # @allure.step('verify presence of Visa/Mastercard/KZT cards on the prodamus page')
+    # def verify_vs_ms_kzt_card_prodamus_page(self):
+    #     actual_result = self.get_text_title_of_element(AuthorizationLocators.VISA_MS_KZT_CARD_PRODAMUS)
+    #     assert actual_result == 'Visa/Mastercard, KZT'
+    #
+    # @allure.step('verify correct location on the cloudpayments page')
+    # def verify_location_cloudpayments_page(self):
+    #     actual_result = self.get_text_title_of_element(AuthorizationLocators.PAYMENT_HEADING_TEXT)
+    #     assert actual_result == 'К оплате принимаются карты платежных систем VISA, Master Card и МИР. ' \
+    #                             'Для оплаты введите данные вашей банковской карты в соответствующие поля'
 
     @allure.step('verify correct location on the tinkoff kassa page')
     def verify_location_tinkoff_kassa_page(self):
@@ -299,10 +319,15 @@ class AuthorizationPage(BaseObject, Assertions):
         actual_result = self.get_text_title_of_element(AuthorizationLocators.RAPID_PAY_TINKOFF_PAGE)
         assert actual_result == 'Быстрая оплата'
 
-    @allure.step('verify correct location on the cloudpayments page')
-    def verify_location_prodamus_page(self):
-        actual_result = self.get_text_title_of_element(AuthorizationLocators.PRODAMUS_PAYMENT_HEADING_TEXT)
-        assert actual_result == 'Оплата картой любого банка'
+    # @allure.step('verify url of telegram care page')
+    # def verify_url_location_tinkoff_kassa_page_rapid_pay(self):
+    #     url = self.get_url('https://securepayments.tinkoff.ru/')
+    #     assert 'tinkoff' in url
+
+    # @allure.step('verify correct location on the cloudpayments page')
+    # def verify_location_prodamus_page(self):
+    #     actual_result = self.get_text_title_of_element(AuthorizationLocators.PRODAMUS_PAYMENT_HEADING_TEXT)
+    #     assert actual_result == 'Оплата картой любого банка'
 
     @allure.step('click to "card RF" button')
     def click_card_rf_button_session(self):
@@ -315,6 +340,10 @@ class AuthorizationPage(BaseObject, Assertions):
     @allure.step('click to "foreign card" button')
     def click_foreign_card_button_session(self):
         self.to_click(AuthorizationLocators.FOREIGN_CARD_SESSION)
+
+    @allure.step('click "paired consulation" button in questionnaire')
+    def click_paired_consultation_button_questionnaire(self):
+        self.to_click(AuthorizationLocators.PAIRED_CONSULTATION_BUTTON_QUESTIONNAIRE)
 
 
     @allure.step('set age in questionnaire')
@@ -349,16 +378,6 @@ class AuthorizationPage(BaseObject, Assertions):
     def click_select_psychologist_title_questionnaire(self):
         self.to_click(AuthorizationLocators.SELECT_PSYCHOLOGIST_TITLE_QUESTIONNAIRE)
 
-    @allure.step('verify presence of Anna Kapu among "choose specialist" list')
-    def verify_presence_anna_kapu_choose_specialist(self):
-        actual_result = self.get_text_title_of_element(AuthorizationLocators.ANNA_KAPU_TITLE_CHOOSE_DOCTOR_LIST)
-        assert actual_result == 'Анна'
-
-    @allure.step('verify presence of Irina Pankova among "choose specialist" list')
-    def verify_presence_pankova_choose_specialist(self):
-        actual_result = self.get_text_title_of_element(AuthorizationLocators.IRINA_PANOVA_TITLE_CHOOSE_DOCTOR_LIST)
-        assert actual_result == 'Ирина'
-
     @allure.step('click "Individual 90" button in questionnaire')
     def click_pankova_video(self):
         self.to_click(AuthorizationLocators.VIDEO_FRAME)
@@ -367,19 +386,9 @@ class AuthorizationPage(BaseObject, Assertions):
     def click_ind_90_questionnaire(self):
         self.to_click(AuthorizationLocators.INDIVIDUAL_90_QUESTIONNAIRE_GENERAL)
 
-    @allure.step('verify presence of Alisa Ivannikova among "choose specialist" list')
-    def verify_presence_alisa_ivannikova_choose_specialist(self):
-        actual_result = self.get_text_title_of_element(AuthorizationLocators.ALISA_IVANNIKOVA_TITLE_CHOOSE_DOCTOR_LIST)
-        assert actual_result == 'Алиса'
-
     @allure.step('click "tatar" button in questionnaire')
     def click_tatar_button_questionnaire(self):
         self.to_click(AuthorizationLocators.TATAR_BUTTON_QUESTIONNAIRE)
-
-    @allure.step('verify presence of Aliya Askarova among "choose specialist" list')
-    def verify_presence_aliya_askarova_choose_specialist(self):
-        actual_result = self.get_text_title_of_element(AuthorizationLocators.ALIYA_ASKAROVA_TITLE_CHOOSE_DOCTOR_LIST)
-        assert actual_result == 'Алия'
 
     @allure.step('click "paired consulation" button in questionnaire')
     def click_paired_consultation_button_questionnaire(self):
@@ -388,11 +397,6 @@ class AuthorizationPage(BaseObject, Assertions):
     @allure.step('click "difficulties in paired relationship" button in questionnaire')
     def click_difficulties_in_relationship_paired_consultation_button_questionnaire(self):
         self.to_click(AuthorizationLocators.DIFFICULTIES_IN_RELATIONSHIP_PAIRED_BUTTON_CONSULTATION)
-
-    @allure.step('verify presence of Elena Kalkan among "choose specialist" list')
-    def verify_presence_elena_kalkan_choose_specialist(self):
-        actual_result = self.get_text_title_of_element(AuthorizationLocators.ELENA_KALKAN_TITLE_CHOOSE_DOCTOR_LIST)
-        assert actual_result == 'Елена'
 
     @allure.step('click "flag" button in rapid sms code authorization page')
     def click_elena_kalkan_name(self):
@@ -417,11 +421,19 @@ class AuthorizationPage(BaseObject, Assertions):
 
     @allure.step('set email to send link for recovering password')
     def set_email_forgot_password(self):
-        self.set_value(AuthorizationLocators.EMAIL_FIELD_FORGOT_PASSWORD, 'sh.aygul@gmail.com')
+        self.set_value(AuthorizationLocators.EMAIL_FIELD_FORGOT_PASSWORD, 'test_user@gmail.com')
+
+    @allure.step('set email to send link for recovering password')
+    def set_email_forgot_password_fixture(self, first):
+        self.set_value(AuthorizationLocators.EMAIL_FIELD_FORGOT_PASSWORD, first)
 
     @allure.step('click "recover password" button')
     def click_reset_password_button(self):
         self.to_click(AuthorizationLocators.RECOVER_PASSWORD_BUTTON)
+
+    @allure.step('click enter instead "recover password" button')
+    def click_enter_instead_reset_password_button(self):
+        self.is_clickable(AuthorizationLocators.RECOVER_PASSWORD_BUTTON).send_keys(Keys.RETURN)
 
     @allure.step('verify message "A link to reset your password has been sent to your email"')
     def verify_message_sent_link_reset_password(self):
@@ -432,66 +444,9 @@ class AuthorizationPage(BaseObject, Assertions):
     def click_register_hypertext(self):
         self.to_click(AuthorizationLocators.REGISTER_HYPERTEXT)
 
-    # @allure.step('set email in registration form')
-    # def set_email_registration_form(self):
-    #     self.set_value(AuthorizationLocators.EMAIL_FIELD_REGISTRATION_FORM, 'aigul.schafigullina.87@yandex.ru')
-    #
-    # @allure.step('set phone in email field in registration form')
-    # def set_phone_registration_form(self):
-    #     self.set_value(AuthorizationLocators.EMAIL_FIELD_REGISTRATION_FORM, '71234567890')
-    #
-    # @allure.step('set email in registration form')
-    # def set_email_registered_user_registration_form(self):
-    #     self.set_value(AuthorizationLocators.EMAIL_FIELD_REGISTRATION_FORM, 'sh.aygul@gmail.com')
-    #
-    # @allure.step('set password in registration form')
-    # def set_password_registration_form(self):
-    #     self.set_value(AuthorizationLocators.PASSWORD1_FIELD_REGISTRATION_FORM, 'password1@')
-    #
-    # @allure.step('repeat password in registration form')
-    # def repeat_password_registration_form(self):
-    #     self.set_value(AuthorizationLocators.PASSWORD2_REPEAT_FIELD_REGISTRATION_FORM, 'password1@')
-    #
-    # @allure.step('repeat wrong password in registration form')
-    # def repeat_wrong_password_registration_form(self):
-    #     self.set_value(AuthorizationLocators.PASSWORD2_REPEAT_FIELD_REGISTRATION_FORM, 'lifehelp1@')
-    #
-    # @allure.step('click first checkbox of consent in registration form')
-    # def click_first_checkbox_consent_registration_form(self):
-    #     self.to_click(AuthorizationLocators.FIRST_CHECKBOX_CONSENT_REGISTRATION_FORM)
-    #
-    # @allure.step('scroll the page till the "register" button in registration form')
-    # def scroll_to_register_button_registration_form(self):
-    #     self.move_to_element(AuthorizationLocators.REGISTER_BUTTON)
-    #
-    # @allure.step('click "to register" button in registration form')
-    # def click_to_register_button_registration_form(self):
-    #     self.to_click(AuthorizationLocators.REGISTER_BUTTON)
-    #
-    # @allure.step('verify message "A link to reset your password has been sent to your email"')
-    # def verify_sent_msg_registration(self):
-    #     actual_result = self.get_text_title_of_element(AuthorizationLocators.REGISTRATION_INFO_TEXT)
-    #     assert actual_result == 'На Ваш email отправлена ссылка для подтверждения электронной почты. ' \
-    #                             'Пожалуйста, перейдите по ней, чтобы завершить процесс регистрации.'
-    #
-    # @allure.step('verify message "A link to reset your password has been sent to your email"')
-    # def verify_error_enter_right_email_registration(self):
-    #     actual_result = self.get_text_title_of_element(AuthorizationLocators.ERROR_MESSAGE_REGISTRATION_FORM)
-    #     assert actual_result == 'Пожалуйста, введите правильный адрес электронной почты'
-    #
-    # @allure.step('verify message "A link to reset your password has been sent to your email"')
-    # def verify_error_wrong_repeat_password_registration(self):
-    #     actual_result = self.get_text_title_of_element(AuthorizationLocators.ERROR_MESSAGE_WRONG_REPEAT_PASSWORD_REG_FORM)
-    #     assert actual_result == 'Введенные пароли не совпадают'
-    #
-    # @allure.step('verify message "The user with this email is already registered"')
-    # def verify_error_msg_registration(self):
-    #     actual_result = self.get_text_title_of_element(AuthorizationLocators.REGISTRATION_ERROR_MESSAGE)
-    #     assert actual_result == 'Пользователь с введенным email уже зарегистрирован'
-
-    # def verify_button_is_not_clickable(self):
-    #     actual_result = self.is_visible(AuthorizationLocators.REGISTER_BUTTON).get_attribute('disabled')
-    #     assert actual_result == True
+    @allure.step('verify url of telegram care page')
+    def verify_url_user_account(self):
+        self.get_url('https://life-help.ru/user/notes')
 
     @allure.step('')
     def scroll_to_main_page_footer(self):
@@ -531,11 +486,6 @@ class AuthorizationPage(BaseObject, Assertions):
     @allure.step('click to "view password" button in password field in authorization page')
     def click_to_telegram_group_network_footer(self):
         self.to_click(AuthorizationLocators.TELEGRAM_SOCIAL_NETWORK_GROUP)
-
-
-    # @allure.step('click to "consent mailing" document name in main page footer bottom')
-    # def click_to_consent_mailing_name_footer_bottom(self):
-    #     self.move_to_element(AuthorizationLocators.CONSENT_MAILING_DOCUMENT_FOOTER)
 
     @allure.step('click to "Tg group" document name in main page footer bottom')
     def click_to_consent_mailing_document_footer(self):
@@ -650,45 +600,9 @@ class AuthorizationPage(BaseObject, Assertions):
     def click_to_good_button_after_deny_order(self):
         self.to_click(AuthorizationLocators.GOOD_BUTTON_AFTER_DENY_ORDER_PAYMENT)
 
-    @allure.step('click to "clients and aims" button in menu navigation of psychologist account')
-    def click_to_clients_and_aims_menu_psychologist(self):
-        self.to_click(AuthorizationLocators.CLIENTS_AND_AIMS_MENU_PSYCHOLOGIST)
-
-    @allure.step('select Aygul-test in "clients and aims" of menu navigation of psychologist account')
-    def select_aygul_clients_and_aims_menu_psychologist(self):
-        self.to_click(AuthorizationLocators.SELECT_AYGUL_TEST_CLIENTS_AIMS)
-
-    @allure.step('click to three dots in client in "clients and aims" of menu navigation of psychologist account')
-    def click_to_three_dots_clients_and_aims_menu_psychologist(self):
-        self.to_click(AuthorizationLocators.THREE_DOTS_PSYCHOLOGIST_CLIENTS_AIM)
-
-    @allure.step('click "to create new session" button for client in "clients and aims" of menu navigation of psychologist account')
-    def click_to_create_new_session_for_clients_menu_psychologist(self):
-        self.to_click(AuthorizationLocators.CREATE_NEW_SESSION_PSYCHOLOGIST)
-
-    @allure.step('click to "to create" button for creating new session for client in "clients and aims" of menu navigation of psychologist account')
-    def click_to_create_button_to_create_new_session_for_clients_menu_psychologist(self):
-        self.to_click(AuthorizationLocators.TO_CREATE_BUTTON_CREATE_SESSION_PSYCHOLOGIST)
-
-    @allure.step('verify successful creation of session from psychologist account')
-    def verify_successful_creation_session_text_psychologist(self):
-        actual_result = self.get_text_title_of_element(AuthorizationLocators.FINE_BUTTON_CREATE_SESSION_PSYCHOLOGIST)
-        assert actual_result == 'Отлично!'
-
-    @allure.step('verify successful creation of session from psychologist account')
-    def verify_successful_creation_order_text_psychologist(self):
-        actual_result = self.get_text_title_of_element(AuthorizationLocators.YOU_HAVE_SUCCESSFULLY_ORDERED_CLIENT_SESSION_MSG)
-        assert 'Вы успешно забронировали' in actual_result
-
     @allure.step('click to "ok" on window of successful order of session by psychologist')
     def click_ok_button_successful_order_by_psychologist(self):
         self.to_click(AuthorizationLocators.FINE_BUTTON_CREATE_SESSION_PSYCHOLOGIST)
-
-    @allure.step('verify unsuccessful creation of session from psychologist account')
-    def verify_error_unsuccessful_creation_order_text_psychologist(self):
-        actual_result = self.get_text_title_of_element(
-            AuthorizationLocators.ERROR_MSG_SELECTED_ORDER_TIME_IS_OCCUPIED)
-        assert actual_result == 'Это время уже занято. Пожалуйста, выберите другое время.'
 
     @allure.step('verify appearance of window with request to set the age')
     def verify_window_to_set_age_questionnaire(self):
@@ -704,18 +618,17 @@ class AuthorizationPage(BaseObject, Assertions):
         actual_result = self.get_text_title_of_element(AuthorizationLocators.SET_YOUR_AGE_QUESTIONNAIRE_WINDOW)
         assert actual_result == 'Пожалуйста, укажите свой возраст'
 
-    @allure.step('click to "I have promocode" on order page')
-    def click_to_ihave_promocode_order_page(self):
-        self.to_click(AuthorizationLocators.I_HAVE_PROMOCODE_TITLE_SESSION_ORDER_PAGE)
-
     @allure.step('enter "promo" in the promo field on the session order page')
-    def enter_free_promocode_session_order_page(self):
-        self.set_value(AuthorizationLocators.ENTER_PROMOCODE_FIELD_SESSION_ORDER_PAGE, 'promo_test')
+    def enter_free_promo_session_order_page(self):
+        self.set_value(AuthorizationLocators.PROMOCODE_FIELD_ORDER_PAGE, 'ng')
 
-    # @allure.step('verify price on the button is 100 rubbles')
-    # def verify_price_100_rubbles_button_order_page_before_promo(self):
-    #     actual_result = self.get_text_title_of_element(AuthorizationLocators.PAYMENT_BUTTON_ORDER_PAGE)
-    #     assert actual_result == '100,00'
+    @allure.step('enter "priprava" in the promo field on the session order page')
+    def enter_partial_promo_session_order_page(self):
+        self.set_value(AuthorizationLocators.PROMOCODE_FIELD_ORDER_PAGE, 'priprava')
+
+    @allure.step('click to "general questions" title in questionnaire')
+    def click_to_apply_promocode_btn_order_page(self):
+        self.to_click(AuthorizationLocators.APPLY_PROMOCODE_BTN_ORDER_PAGE)
 
     @allure.step('verify price on the button is 100 rubbles')
     def verify_price_1_rubble_button_order_page_before_promo(self):
@@ -760,11 +673,6 @@ class AuthorizationPage(BaseObject, Assertions):
     def verify_window_age_above16_questionnaire(self):
         actual_result = self.get_text_title_of_element(AuthorizationLocators.AGE_ABOVE16_WINDOW_QUESTIONNAIRE)
         assert actual_result == 'Нашим сервисом можно пользоваться с 16 лет'
-
-    # @allure.step('move to new whatsapp Nastya help page') открывается на этой же странице
-    # def move_to_new_whatsapp_help_page(self):
-    #     whatsapp_help_page = self.driver.window_handles[1]
-    #     self.driver.switch_to.window(whatsapp_help_page)
 
     @allure.step('click to "select psychologist" in action module')
     def click_to_select_psychologyst_button_action(self):
@@ -865,10 +773,6 @@ class AuthorizationPage(BaseObject, Assertions):
         actual_result = self.get_text_title_of_element(AuthorizationLocators.NAME_OF_THE_CREATED_AIM_CLIENT)
         assert actual_result == 'My aim'
 
-    @allure.step('click "Add new aim" button psychologist account')
-    def click_add_new_aim_button_psychologist(self):
-        self.to_click(AuthorizationLocators.ADD_NEW_AIM_BUTTON_PSYCHOLOGIST)
-
     @allure.step('click to "no, continue payment" button to the question to see the package on the order page ')
     def click_no_continue_payment_button_order_page(self):
         self.to_click(AuthorizationLocators.NO_CONTINUE_PAYMENT_BUTTON)
@@ -886,6 +790,10 @@ class AuthorizationPage(BaseObject, Assertions):
     def click_buy_package_54_by_tinkoff_installments(self):
         self.to_click(AuthorizationLocators.TINKOFF_INSTALLMENTS_PACKAGE54_BUTTON)
 
+    @allure.step('click to "buy package of 54 sessions" by installments button')
+    def click_package_54_order_page(self):
+        self.to_click(AuthorizationLocators.PACKAGE_54_BUTTON_ORDER_PAGE)
+
     @allure.step('click to "continue" by tinkoff installments button')
     def click_continue_button_by_tinkoff_installments(self):
         self.to_click(AuthorizationLocators.TINKOFF_BUTTON_CONTINUE)
@@ -895,10 +803,9 @@ class AuthorizationPage(BaseObject, Assertions):
         tinkoff_installments_page = self.driver.window_handles[1]
         self.driver.switch_to.window(tinkoff_installments_page)
 
-    # @allure.step('verify title of the page with tinkoff installments application')
-    # def verify_tinkoff_installments_application_page_title(self):
-    #     actual_result = self.get_text_title_of_element(AuthorizationLocators.TINKOFF_INSTALLMENT_APPLICATION_PAGE_TITLE)
-    #     assert actual_result == 'Оформление заявки'
+    @allure.step('click to "buy package of 54 sessions" by installments button')
+    def click_package_4_order_page(self):
+        self.to_click(AuthorizationLocators.PACKAGE_4_BUTTON_NEW_ORDER_PAGE)
 
     @allure.step('verify title of the page with tinkoff installments application')
     def verify_tinkoff_installments_application_page_conditions(self):
@@ -917,15 +824,15 @@ class AuthorizationPage(BaseObject, Assertions):
     def scroll_till_bottom_psychologyst_schedule(self):
         self.move_to_page_bottom()
 
-    @allure.step('verify presence of the package 54 on the payment page ')
-    def verify_presence_package_test_payment_page(self):
-        actual_result = self.get_text_title_of_element(AuthorizationLocators.PACKAGE_TEST_NAME_PAYMENT_PAGE)
-        assert actual_result == 'Пакет из Test сеансов'
+    @allure.step('verify successful payment of session by package - message')
+    def verify_successful_session_payment_by_package(self):
+        actual_result = self.get_text_title_of_element(AuthorizationLocators.SUCCESSFUL_PAYMENT_BY_PACKAGE_MSG)
+        assert actual_result == 'Сессия успешно оплачена из пакета'
 
     @allure.step('verify presence of the Test package on the payment page ')
     def verify_presence_package_test_order_payment_page(self):
         actual_result = self.get_text_title_of_element(AuthorizationLocators.PACKAGE_TEST_NAME_PAYMENT_PAGE)
-        assert actual_result == 'Пакет из Test сеансов'
+        assert actual_result == 'Пакет из 4 сеансов'
 
     @allure.step('click to the "to pay" button on the payment page')
     def click_to_pay_button_payment_page(self):
@@ -944,11 +851,6 @@ class AuthorizationPage(BaseObject, Assertions):
     def click_phone_number_skype_button(self):
         self.to_click(AuthorizationLocators.SKYPE_PHONE_NUMBER_HELP_MAIN_PAGE)
 
-
-
-    # @allure.step('verify presence of reCaptcha on the rapid auth page')
-    # def hover_to_recaptcha_element(self):
-    #     self.move_to_element(AuthorizationLocators.RECAPTCHA_LOGO_RAPID_AUTH).perform()
 
     @allure.step('verify presence of recaptcha authorization page ')
     def verify_presence_recaptcha_auth_page_title(self):
@@ -1035,39 +937,9 @@ class AuthorizationPage(BaseObject, Assertions):
     def click_to_user_avatar_button_psychologist_page(self):
         self.to_click(AuthorizationLocators.USER_AVATAR_NAME)
 
-    # @allure.step('click "Elena K" element psychologist list page')
-    # def click_elena_kalkan_psychologist_list(self):
-    #     self.to_click(AuthorizationLocators.SELECT_ELENA_KALKAN_PSYCHOLOGYST_LIST)
-
     @allure.step('click 7th time in Elena Kalkan schedule')
     def click_3rd_time_pankova_schedule_page(self):
         self.to_click(AuthorizationLocators.SELECT_TIME_3_RAPID_PANKOVA)
-
-    # @allure.step('set up "your email" in registration form')
-    # def set_your_email_registration_fixture(self, first):
-    #     self.set_value(AuthorizationLocators.EMAIL_FIELD_REGISTRATION_FORM, first)
-    #
-    # @allure.step('set password in registration form_fixture')
-    # def set_password_registration_form_fixture(self, second):
-    #     self.set_value(AuthorizationLocators.PASSWORD1_FIELD_REGISTRATION_FORM, second)
-    #
-    # @allure.step('repeat password in registration form_fixture')
-    # def repeat_password_registration_form_fixture(self, third):
-    #     self.set_value(AuthorizationLocators.PASSWORD2_REPEAT_FIELD_REGISTRATION_FORM, third)
-    #
-    # @allure.step('verify error message in registration form')
-    # def verify_error_message_registration_fixture(self, fourth):
-    #     actual_result = self.get_text_title_of_element(
-    #         AuthorizationLocators.ERROR_MESSAGE_WRONG_REPEAT_PASSWORD_REG_FORM)
-    #     assert actual_result == fourth
-
-    # @allure.step('click "rapid auth" button in registration page')
-    # def click_rapid_auth_btn_registration_page(self):
-    #     self.to_click(AuthorizationLocators.RAPID_AUTH_BUTTON_REGISTRATION_PAGE)
-    #
-    # @allure.step('scroll the page till the "rapid auth" button in registration form')
-    # def scroll_to_rapid_auth_button_registration_form(self):
-    #     self.move_to_element(AuthorizationLocators.RAPID_AUTH_BUTTON_REGISTRATION_PAGE)
 
     @allure.step('click "avatar" button in package order page')
     def click_avatar_package_order_page(self):
@@ -1139,10 +1011,6 @@ class AuthorizationPage(BaseObject, Assertions):
         actual_result = self.get_text_title_of_element(AuthorizationLocators.NAME_VIDEO_SESSION_HEADING)
         assert 'Сеанс с психологом' in actual_result
 
-    # @allure.step('click to "regular session order" icon')
-    # def click_regular_session_order_icon(self):
-    #     self.to_click(AuthorizationLocators.REGULAR_SESSION_ORDER_ICON)
-
     @allure.step('move to new regular schedule page')
     def move_to_new_regular_schedule_page(self):
         regular_schedule_page = self.driver.window_handles[1]
@@ -1165,10 +1033,6 @@ class AuthorizationPage(BaseObject, Assertions):
     def click_select_psychologist_time_action_schedule(self):
         self.to_click(AuthorizationLocators.ACTION_DOCTOR_SCHEDULE_1ST_TIME)
 
-    # @allure.step('scroll to button "go to payment" in action schedule page')
-    # def scroll_to_go_to_payment_action_schedule_page(self):
-    #     self.move_to_element(AuthorizationLocators.ACTION_DOCTOR_SCHEDULE_7TH_TIME)
-
     @allure.step('click to "to pay" button in clients account - My schedule page')
     def click_to_pay_btn_order_my_schedule_page(self):
         self.to_click(AuthorizationLocators.TO_PAY_BUTTON_ORDER_ACCOUNT_PAGE)
@@ -1176,10 +1040,6 @@ class AuthorizationPage(BaseObject, Assertions):
     @allure.step('verify users "my schedule" page url')
     def verify_my_schedule_user_page_url(self):
         self.get_url('https://life-help.ru/user/notes')
-
-    @allure.step('verify url of questionnaire first page')
-    def verify_url_get_psychologist_page(self):
-        self.get_url('https://life-help.ru/questionnaire/general/')
 
     @allure.step('click to "to pay" button in clients account - My schedule page')
     def click_to_get_psychologists_btn_client_menu(self):
@@ -1212,12 +1072,6 @@ class AuthorizationPage(BaseObject, Assertions):
     def verify_disabled_type_button_reset_password_page(self):
         actual_result = self.is_visible(AuthorizationLocators.RECOVER_PASSWORD_BUTTON).get_attribute('disabled')
         print(actual_result)
-        # assert 'disabled' in actual_result
-
-    # @allure.step('verify disabled type of the "reset password" button - get link to restore password page')
-    # def verify_disabled_type_button_registration_page(self):
-    #     actual_result = self.is_visible(AuthorizationLocators.REGISTER_BUTTON).get_attribute('disabled')
-    #     print(actual_result)
         # assert 'disabled' in actual_result
 
     @allure.step('click to price on the tinkoff session payment page - to check the payment details')
@@ -1327,28 +1181,107 @@ class AuthorizationPage(BaseObject, Assertions):
         actual_result = self.get_text_title_of_element(AuthorizationLocators.WRONG_NUMBER_MESSAGE_RAPID_AUTH_PAGE)
         assert 'Телефон слишком длинный' not in actual_result
 
-    # @allure.step('verify aim status is "created" client') - не сработало
-    # def verify_error_class_false_certificate_code(self):
-    #     actual_result = self.is_visible(AuthorizationLocators.ACTIVATE_CERTIFICATE_INPUT_WRAPPER).get_attribute('class')
-    #     assert actual_result == 'certificate__code-input error'
+    @allure.step('click to orange "pay" button on order page')
+    def click_orange_pay_button(self):
+        self.to_click(AuthorizationLocators.ORANGE_PAY_BUTTON_ORDER_PAGE)
 
-    # @allure.step('scroll to button with 3rd rapid time in Pankova schedule page')
-    # def scroll_to_3rd_rapid_time_button_pankova_schedule(self):
-    #     self.move_to_element(AuthorizationLocators.SELECT_TIME_3_RAPID_PANKOVA)
+    @allure.step('click to orange "pay" button on order page')
+    def click_foreign_card_button(self):
+        self.to_click(AuthorizationLocators.FOREIGN_CARD_ORDER_PAGE)
 
-    # @allure.step('verify session status "waits for payment" in the cabinet')
-    # def verify_absence_order(self):
-    #     actual_result = self.get_text_title_of_element(AuthorizationLocators.SESSION_WAITS_FOR_PAYMENT_TEXT)
-    #     assert actual_result != 'Ожидает оплаты'
+    @allure.step('click to "buy package of 54 sessions" by installments button')
+    def click_package_54_12_month_installment_order_page(self):
+        self.to_click(AuthorizationLocators.PACKAGE54_12_MONTH_INSTALLMENTS_BTN)
+
+    @allure.step('verify price on the button is 0,00 rubbles')
+    def verify_price_0_rubbles_btn_order_page_after_promo(self):
+        promo_result = self.get_text_title_of_element(AuthorizationLocators.SUMMARY_PRICE_ORDER_PAGE)
+        assert promo_result == '0'
+
+    @allure.step('verify price on the button is 10,00 rubbles')
+    def verify_price_10_rubbles_btn_order_page_after_priprava_promocode(self):
+        promo_result = self.get_text_title_of_element(AuthorizationLocators.SUMMARY_PRICE_ORDER_PAGE)
+        assert promo_result == '10'
+
+    @allure.step('verify order page title')
+    def verify_order_page_title(self):
+        promo_result = self.get_text_title_of_element(AuthorizationLocators.TITLE_ORDER_PAGE)
+        assert promo_result == 'Запись и оплата услуги'
+
+    @allure.step('verify price on the button is 0,00 rubbles')
+    def verify_session_price_2950_rubbles_order_page(self):
+        promo_result = self.get_text_title_of_element(AuthorizationLocators.SESSION_2950_PRICE_ORDER_PAGE)
+        assert promo_result == '2 950'
+
+    @allure.step('click to "contract offer" auth page checkbox')
+    def click_contract_offer_auth_page(self):
+        self.to_click(AuthorizationLocators.CONTRACT_OFFER_TITLE_AUTH_PAGE)
+
+    @allure.step('move to new page')
+    def move_to_new_page(self):
+        new_page = self.driver.window_handles[1]
+        self.driver.switch_to.window(new_page)
+
+    @allure.step('verify url of contract offer page')
+    def verify_url_contract_offer_page(self):
+        self.get_url('https://life-help.ru/contract-offer/')
+
+    @allure.step('click to "agreement" auth page checkbox')
+    def click_agreement_auth_page(self):
+        self.to_click(AuthorizationLocators.AGREEMENT_PERSONAL_TITLE_AUTH_PAGE)
+
+    @allure.step('verify url of agreement page')
+    def verify_url_agreement_page(self):
+        self.get_url('https://life-help.ru/agreement/')
+
+    @allure.step('click to "consent mailing" auth page checkbox')
+    def click_consent_mailing_auth_page(self):
+        self.to_click(AuthorizationLocators.CONSENT_MAILING_TITLE_AUTH_PAGE)
+
+    @allure.step('verify url of agreement page')
+    def verify_url_consent_mailing_page(self):
+        self.get_url('https://life-help.ru/consent-mailing/')
+
+    @allure.step('verify price on the button is 2 950 ₽')
+    def verify_session_price_2950_rubbles_questionnaire_general_page(self):
+        ind_50_session_result = self.get_text_title_of_element(AuthorizationLocators.PRICE_2950_QUESTIONNAIRE_GENERAL_PAGE)
+        assert ind_50_session_result == '50 мин・2 950 ₽'
+
+    @allure.step('click get-code btn')
+    def enter_instead_click_get_code_btn(self):
+        self.is_clickable(AuthorizationLocators.GET_CODE_BTN).send_keys(Keys.RETURN)
+
+    @allure.step('clicking to "Authorize" button')
+    def enter_instead_click_to_authorize_button(self):
+        self.is_clickable(AuthorizationLocators.AUTH_BUTTON).send_keys(Keys.RETURN)
 
 
-    # @allure.step('get page choose specialist url')
-    # def get_page_choose_doctor_url(self):
-    #     self.get_url('https://life-help.ru/questionnaire/choose-doctor/')
-    #
-    # @allure.step('verify questionnaire choose doctor page url')
-    # def verify_choose_doctor_page_url(self):
-    #     actual_url = self.get_url()
-    #     assert actual_url == 'https://life-help.ru/questionnaire/choose-doctor/'
+    @allure.step('click to first rapid time on choose doctor page')
+    def click_first_rapid_time_choose_doctor_page(self):
+        self.to_click(AuthorizationLocators.FIRST_ORDER_TIME_DOCTOR_PAGE_AFTER_QUESTIONNAIRE)
 
+    @allure.step('scroll to "order time" button on psychologyst rapid schedule')
+    def scroll_till_btn_order_rapid_time_psychologist_schedule(self):
+        self.move_to_element(AuthorizationLocators.TO_ORDER_RAPID_TIME_BTN_DOCTOR_PAGE_AFTER_QUESTIONNAIRE)
+
+    @allure.step('click to btn "order selected time" in rapid schedule')
+    def click_to_btn_order_rapid_time_choose_doctor_page(self):
+        self.to_click(AuthorizationLocators.TO_ORDER_RAPID_TIME_BTN_DOCTOR_PAGE_AFTER_QUESTIONNAIRE)
+
+    @allure.step('click to btn "find psychologist" from user account page')
+    def click_to_btn_find_psychologist_account_page(self):
+        self.to_click(AuthorizationLocators.FIND_PSYCHOLOGIST_ACCOUNT_BTN)
+
+    @allure.step('refresh the current page')
+    def refresh_page(self):
+        self.driver.refresh()
+
+    @allure.step('verify name of the button "get code" on auth page')
+    def verify_get_code_btn_name_auth_page(self):
+        actual_result = self.get_text_title_of_element(AuthorizationLocators.GET_CODE_BTN)
+        assert actual_result == 'Получить код'
+
+    @allure.step('click to btn "to register" auth w password page')
+    def click_to_btn_register_auth_page(self):
+        self.to_click(AuthorizationLocators.REGISTRATION_TEXT_AUTH_PAGE)
 

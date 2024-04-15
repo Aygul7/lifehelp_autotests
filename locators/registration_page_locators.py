@@ -11,3 +11,7 @@ class RegistrationLocators:
     ERROR_MESSAGE_REGISTRATION_FORM = (By.CSS_SELECTOR, ".user_data__message-error.slowly__show-error")
     ERROR_MESSAGE_WRONG_REPEAT_PASSWORD_REG_FORM = (By.CSS_SELECTOR, ".user_data__message-error.slowly__show-error")
     RAPID_AUTH_BUTTON_REGISTRATION_PAGE = (By.XPATH, "//button[contains(text(),'Быстрый вход')]")
+
+    VIEW_PASSWORD_BUTTON_REGISTRATION_FIELD = (By.CSS_SELECTOR, ".auth__form-password-control")
+    HIDE_PASSWORD_BUTTON_REGISTRATION_FIELD = (By.CSS_SELECTOR, ".auth__form-password-control.view")
+    HIDE_REPEAT_PASSWORD_BUTTON_REGISTRATION_FIELD = (By.XPATH, "(//a[@class='auth__form-password-control view'])[2]")

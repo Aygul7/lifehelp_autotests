@@ -2,6 +2,7 @@ from base.base_object import BaseObject
 from locators.registration_page_locators import RegistrationLocators
 import allure
 from support.assertions import Assertions
+from selenium.webdriver.common.keys import Keys
 
 
 
@@ -35,6 +36,10 @@ class RegistrationPage(BaseObject, Assertions):
     @allure.step('click "to register" button in registration form')
     def click_to_register_button_registration_form(self):
         self.to_click(RegistrationLocators.REGISTER_BUTTON)
+
+    @allure.step('click enter instead of "to register" button in registration form')
+    def click_enter_instead_register_button_registration_form(self):
+        self.is_clickable(RegistrationLocators.REGISTER_BUTTON).send_keys(Keys.RETURN)
 
     @allure.step('verify message "A link to reset your password has been sent to your email"')
     def verify_sent_msg_registration(self):
@@ -81,3 +86,33 @@ class RegistrationPage(BaseObject, Assertions):
     def verify_disabled_type_button_registration_page(self):
         actual_result = self.is_visible(RegistrationLocators.REGISTER_BUTTON).get_attribute('disabled')
         print(actual_result)
+
+    @allure.step('set password in registration form')
+    def set_short_password_7_registration_form(self):
+        self.set_value(RegistrationLocators.PASSWORD1_FIELD_REGISTRATION_FORM, 'passwod1@')
+
+    @allure.step('repeat password in registration form')
+    def repeat_short_password_7_registration_form(self):
+        self.set_value(RegistrationLocators.PASSWORD2_REPEAT_FIELD_REGISTRATION_FORM, 'passwod1@')
+
+    @allure.step('verify hidden mode of the password field')
+    def verify_hidden_type_password_field(self):
+        actual_result = self.is_visible(RegistrationLocators.PASSWORD1_FIELD_REGISTRATION_FORM).get_attribute('type')
+        assert actual_result == 'password'
+
+    @allure.step('click to "view password" button in password field in registration page')
+    def click_to_view_password_button_registration_page(self):
+        self.to_click(RegistrationLocators.VIEW_PASSWORD_BUTTON_REGISTRATION_FIELD)
+
+    @allure.step('verify view mode of the password field')
+    def verify_viewed_type_password_field(self):
+        actual_result = self.is_visible(RegistrationLocators.PASSWORD1_FIELD_REGISTRATION_FORM).get_attribute('type')
+        assert actual_result == 'text'
+
+    @allure.step('click to "view password" button in password field in registration page')
+    def click_to_hide_password_button_registration_page(self):
+        self.to_click(RegistrationLocators.HIDE_PASSWORD_BUTTON_REGISTRATION_FIELD)
+
+    @allure.step('click to "view password" button in repeat password field in registration page')
+    def click_to_hide_repeat_password_button_registration_page(self):
+        self.to_click(RegistrationLocators.HIDE_REPEAT_PASSWORD_BUTTON_REGISTRATION_FIELD)

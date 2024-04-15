@@ -7,6 +7,7 @@ from support.assertions import Assertions
 
 
 
+
 class RestorePasswordLinkPage(BaseObject):
 
     def __init__(self, driver):
@@ -89,3 +90,5 @@ class RestorePasswordLinkPage(BaseObject):
     def verify_not_disabled_type_button_save_reset_password_page(self):
         actual_result = self.is_visible(RestorePasswordLinkLocators.TO_SAVE_BUTTON).get_attribute('disabled')
         assert 'disabled' not in actual_result
+
+

@@ -1,5 +1,7 @@
 import allure
 import pytest
+from pages.authorization_page import AuthorizationPage
+from locators.authorization_locators import AuthorizationLocators
 
 
 # 1 - Проверка, что успешного восстановления пароля - сообщение"Вы успешно установили новый пароль!"
@@ -89,3 +91,48 @@ def test_disabled_button_save_reset_password_page_wo_new_pass_field(restore_pass
     restore_password_link_page.repeat_new_password()
     restore_password_link_page.verify_disabled_type_button_save_reset_password_page()
 
+# 17(21) - проверка пути восстановления пароля до отправки email со ссылкой на email
+# по клику на кнопку "Зарегистрироваться"
+def test_get_link_reset_password(authorization_page):
+    authorization_page.click_to_login_button()
+    authorization_page.click_to_login_w_password_button()
+    authorization_page.click_forgot_password()
+    authorization_page.set_email_forgot_password()
+    authorization_page.click_reset_password_button()
+    authorization_page.verify_message_sent_link_reset_password()
+
+# 18 - проверка пути восстановления пароля до отправки email со ссылкой на email кликом на Enter
+def test_successful_enter_instead_btn_click_send_link_restore_pass(authorization_page):
+    authorization_page.click_to_login_button()
+    authorization_page.click_to_login_w_password_button()
+    authorization_page.click_forgot_password()
+    authorization_page.set_email_forgot_password()
+    authorization_page.click_enter_instead_reset_password_button()
+    authorization_page.verify_message_sent_link_reset_password()
+
+# 19 (85) - проверка - кнопка "Восстановить пароль" неактивная без ввода email
+def test_inactive_button_get_link_reset_password(authorization_page):
+    authorization_page.click_to_login_button()
+    authorization_page.click_to_login_w_password_button()
+    authorization_page.click_forgot_password()
+    authorization_page.verify_disabled_type_button_reset_password_page()
+
+# 20-25 - проверка валидации поля ввода email - кнопка "Восстановить пароль" неактивная
+case_1 = ['123']
+case_2 = ['abc']
+case_3 = ['@']
+case_4 = ['abc@']
+case_5 = ['abc@mail.']
+case_6 = ['123@mail@.ru']
+
+
+@pytest.mark.parametrize('first', (case_1, case_2, case_3, case_4, case_5, case_6),
+                             ids=['numbers only', 'letters only', "@ only",
+                                  "letters and @", "email without ,ru", "email with two @"])
+
+def test_inactive_button_get_link_reset_password_wrong_email(authorization_page, first):
+    authorization_page.click_to_login_button()
+    authorization_page.click_to_login_w_password_button()
+    authorization_page.click_forgot_password()
+    authorization_page.set_email_forgot_password_fixture(first)
+    authorization_page.verify_disabled_type_button_reset_password_page()

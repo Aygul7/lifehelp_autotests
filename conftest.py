@@ -14,6 +14,13 @@ from pages.veb_life_help_page import VebLhPage
 from pages.taplink_pages import TaplinkPage
 from pages.restore_password_link_page import RestorePasswordLinkPage
 from pages.registration_page import RegistrationPage
+from pages.web_life_help_page import WebLhPage
+from pages.index_page import IndexPage
+from pages.order_page import OrderPage
+from pages.lifehelp_pro_gift_page import LhproGiftPage
+from pages.promotion_page import PromotionPage
+from pages.psychologist_account_page import PsychologistAccountPage
+from pages.lifehelppro_page import LifehelpProPage
 
 # FULL_PATH = os.path.dirname(os.path.realpath(__file__))
 # COOKIE_PATH = str(FULL_PATH) + '/cookies.json'
@@ -48,7 +55,7 @@ def setup(get_webdriver):
 
 @pytest.fixture
 def setup_direct_link(get_webdriver):
-    URL = 'https://life-help.ru/link-to-psychologist/128?duration=single_session'
+    URL = 'https://life-help.ru/link-to-psychologist/128'
     get_webdriver.get(URL)
     yield get_webdriver
     get_webdriver.quit()
@@ -62,14 +69,14 @@ def setup_veb_lh(get_webdriver):
 
 @pytest.fixture
 def setup_taplink(get_webdriver):
-    URL = 'https://taplink.cc/life.help.pro?fbclid=PAAabbNtUe7s7U-9lF4ZdkavdAN4ryIbWyZEIi9sAtHUZn8dwG-RzN0rtcFmg'
+    URL = 'https://taplink.cc/life.help.pro'
     get_webdriver.get(URL)
     yield get_webdriver
     get_webdriver.quit()
 
 @pytest.fixture
 def setup_restore_password_link(get_webdriver):
-    URL = 'https://life-help.ru/set-new-password/MTMzOA/bwmehr-049734e24898d3f19171831b42325e8b/'
+    URL = 'https://life-help.ru/set-new-password/MTMzOA/c3gssu-0908daeb9688d6822ead89b7250e83db/'
     get_webdriver.get(URL)
     yield get_webdriver
     get_webdriver.quit()
@@ -89,6 +96,13 @@ def setup_user_account(get_webdriver):
     get_webdriver.quit()
 
 @pytest.fixture
+def setup_psychologist_account(get_webdriver):
+    URL = 'https://life-help.ru/'
+    get_webdriver.get(URL)
+    yield get_webdriver
+    get_webdriver.quit()
+
+@pytest.fixture
 def setup_registration(get_webdriver):
     URL = 'https://life-help.ru/registration/'
     get_webdriver.get(URL)
@@ -96,8 +110,52 @@ def setup_registration(get_webdriver):
     get_webdriver.quit()
 
 @pytest.fixture
+def setup_web_lh(get_webdriver):
+    URL = 'https://web.life-help.pro/'
+    get_webdriver.get(URL)
+    yield get_webdriver
+    get_webdriver.quit()
+
+@pytest.fixture
+def setup_lh_pro_gift(get_webdriver):
+    URL = 'https://lifehelp.pro/gifts'
+    get_webdriver.get(URL)
+    yield get_webdriver
+    get_webdriver.quit()
+
+@pytest.fixture
+def setup_lh_pro(get_webdriver):
+    URL = 'https://lifehelp.pro/'
+    get_webdriver.get(URL)
+    yield get_webdriver
+    get_webdriver.quit()
+
+@pytest.fixture
+def setup_promotion(get_webdriver):
+    URL = 'https://life-help.ru/promotion/registration/Mg/1eab51ec072a4c9c86a5c784102b1b55/endless/'
+    get_webdriver.get(URL)
+    yield get_webdriver
+    get_webdriver.quit()
+
+@pytest.fixture
 def authorization_page(setup):
     yield AuthorizationPage(setup)
+
+@pytest.fixture
+def order_page(setup):
+    yield OrderPage(setup)
+
+@pytest.fixture
+def index_page(setup):
+    yield IndexPage(setup)
+
+@pytest.fixture
+def lifehelp_pro_gift_page(setup_lh_pro_gift):
+    yield LhproGiftPage(setup_lh_pro_gift)
+
+@pytest.fixture
+def lifehelp_pro_page(setup_lh_pro):
+    yield LifehelpProPage(setup_lh_pro)
 
 @pytest.fixture
 def questionnaire_page(setup_questionnaire):
@@ -124,8 +182,20 @@ def user_account_page(setup_user_account):
     yield UserAccountPage(setup_user_account)
 
 @pytest.fixture
+def psychologist_account_page(setup_psychologist_account):
+    yield PsychologistAccountPage(setup_psychologist_account)
+
+@pytest.fixture
 def registration_page(setup_registration):
     yield RegistrationPage(setup_registration)
+
+@pytest.fixture
+def web_lh_page(setup_web_lh):
+    yield WebLhPage(setup_web_lh)
+
+@pytest.fixture
+def promotion_page(setup_promotion):
+    yield PromotionPage(setup_promotion)
 
 # @pytest.fixture
 # def main_page_question_page(setup):

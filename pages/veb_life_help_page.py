@@ -77,6 +77,10 @@ class VebLhPage(BaseObject):
         self.to_click(VebLifeHelpLocators.CONSENT_MAILING_VEB_LH)
 
     @allure.step('clicking to "Consent mailing" button of footer')
+    def click_to_oferta_button_veb_lh(self):
+        self.to_click(VebLifeHelpLocators.OFERTA_DOCUMENT_VEB_LH)
+
+    @allure.step('clicking to "Consent mailing" button of footer')
     def click_order_20min_session_button_veb_lh(self):
         self.to_click(VebLifeHelpLocators.ORDER_20_MIN_SESSION_VEB_LH)
 
@@ -97,8 +101,17 @@ class VebLhPage(BaseObject):
         actual_result = self.get_text_title_of_element(VebLifeHelpLocators.SUCCESSFUL_ANSWER_SEND_ORDER_20MIN_VEB_LH)
         assert 'Ваша заявка отправлена.' in actual_result
 
-    # @allure.step('verify successful sending of the request to order 20min session ')
-    # def verify_presence_utm_url_veb_lh(self):
-    #     actual_result = self.get_url('https://life-help.ru/auth/?utm_source=veb.life-help.pro&utm_medium=&utm_'
-    #                                  'campaign=&utm_content=&utm_term=%C2%A0').text
-    #     assert 'utm_content' in actual_result
+    @allure.step('clicking to "VK" button of footer')
+    def click_to_vk_button_veb_lh(self):
+        self.to_click(VebLifeHelpLocators.VK_WIDGET_VEB_LH)
+
+    @allure.step('clicking to "Telegram" button of footer')
+    def click_to_telegram_group_button_veb_lh(self):
+        self.to_click(VebLifeHelpLocators.TELEGRAM_GROUP_WIDGET_VEB_LH)
+
+    @allure.step('clicking to "Telegram" button of footer')
+    def click_to_register_button_footer_veb_lh(self):
+        self.to_click(VebLifeHelpLocators.TO_REGISTER_BUTTON_FOOTER)
+
+
+

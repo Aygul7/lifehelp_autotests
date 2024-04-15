@@ -12,7 +12,7 @@ class PsychologistPage(BaseObject, Assertions):
     @allure.step('verify psychologist title - Elena Kalkan page')
     def verify_psy_page_title(self):
         actual_result = self.get_text_title_of_element(PsychologistPageLocators.PSYCHOLOGIST_ELENA_KALKAN_TITLE)
-        expected_result = 'Елена К.'
+        expected_result = 'Елена Геннадьевна'
         self.verify(expected_result, actual_result)
 
     @allure.step('check presence of the first order time')
@@ -84,3 +84,26 @@ class PsychologistPage(BaseObject, Assertions):
     def scroll_to_rapid_payment_button(self):
         self.move_to_element(PsychologistPageLocators.RAPID_GO_TO_PAYMENT_BTN)
 
+    @allure.step('verify price on the button is 2 950 ₽')
+    def verify_session_price_2950_rubbles_psychologist_page(self):
+        ind_50_session_result = self.get_text_title_of_element(
+            PsychologistPageLocators.PRICE_2950_DOCTOR_PAGE)
+        assert ind_50_session_result == '2950.00 ₽'
+
+    @allure.step('verify doctor name in user account, terminated session - Имя Отчество ')
+    def verify_doctor_name_user_terminated_session(self):
+        actual_result = self.get_text_title_of_element(PsychologistPageLocators.DOCTOR_NAME_DOCTOR_PAGE)
+        expected_result = 'Елена Геннадьевна'
+        self.verify(expected_result, actual_result)
+
+    @allure.step('verify price on the button is 4 200 ₽')
+    def verify_session_price_4200_rubbles_psychologist_page(self):
+        ind_90_session_result = self.get_text_title_of_element(
+            PsychologistPageLocators.PRICE_4200_DOCTOR_PAGE)
+        assert ind_90_session_result == '4200.00 ₽'
+
+    @allure.step('verify price on the button is 4 850 ₽')
+    def verify_session_price_4850_rubbles_psychologist_page(self):
+        paired_session_result = self.get_text_title_of_element(
+            PsychologistPageLocators.PRICE_4850_DOCTOR_PAGE)
+        assert paired_session_result == '4850.00 ₽'

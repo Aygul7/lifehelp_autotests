@@ -11,3 +11,4 @@ class RestorePasswordLinkLocators:
     VIEW_PASSWORD_BUTTON_RESTORE_PASSWORD_FIELD = (By.CSS_SELECTOR, ".auth__form-password-control")
     HIDE_PASSWORD_BUTTON_RESTORE_PASSWORD_FIELD = (By.CSS_SELECTOR, ".auth__form-password-control.view")
     SUCCESSFUL_RESTORE_PASSWORD_TEXT = (By.XPATH, "//h1[contains(text(),'Вы успешно установили новый пароль!')]")
+    RECOVER_PASSWORD_BUTTON = (By.CSS_SELECTOR, "#password_recovery__form-input-btn")

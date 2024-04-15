@@ -235,3 +235,45 @@ class UserAccountPage(BaseObject, Assertions):
     def scroll_to_user_avatar(self):
         self.move_to_element(UserAccountLocators.USER_AVATAR)
 
+    @allure.step('verify doctor name in user account - Имя Отчество ')
+    def verify_doctor_name_user_account(self):
+        actual_result = self.get_text_title_of_element(UserAccountLocators.MY_DOCTOR_NAME_USER_ACCOUNT)
+        expected_result = 'Имя Отчество'
+        self.verify(expected_result, actual_result)
+
+    @allure.step('verify doctor name in user chat - Имя Отчество ')
+    def verify_doctor_name_user_chat_account(self):
+        actual_result = self.get_text_title_of_element(UserAccountLocators.DOCTOR_NAME_CHAT_TITLE_USER_ACCOUNT)
+        expected_result = 'Имя Отчество'
+        self.verify(expected_result, actual_result)
+    @allure.step('verify doctor name in user account, terminated session - Имя Отчество ')
+    def verify_doctor_name_user_terminated_session(self):
+        actual_result = self.get_text_title_of_element(UserAccountLocators.DOCTOR_NAME_TERMINATED_SESSION_USER_ACCOUNT)
+        expected_result = 'Имя Отчество'
+        self.verify(expected_result, actual_result)
+
+    @allure.step('click to activate certificate btn - user account, my schedule')
+    def click_to_activate_certificate_btn_my_schedule(self):
+        self.to_click(UserAccountLocators.ACTIVATE_CERTIFICATE_TITLE_MY_SCHEDULE)
+
+    @allure.step('verify title of the modal "activate certificate"')
+    def verify_modal_title_activate_certificate(self):
+        actual_result = self.get_text_title_of_element(UserAccountLocators.MODAL_TITLE_ACTIVATE_CERTIFICATE)
+        expected_result = 'Активация сертификата'
+        self.verify(expected_result, actual_result)
+
+    @allure.step('click to "payment history" btn - user account, my balance')
+    def click_to_payment_history_btn_my_balance(self):
+        self.to_click(UserAccountLocators.PAYMENT_HISTORY_TITLE)
+
+    @allure.step('verify doctor name in user account, payment history - Имя Отчество ')
+    def verify_doctor_name_payment_history(self):
+        actual_result = self.get_text_title_of_element(UserAccountLocators.DOCTOR_NAME_PAYMENT_HISTORY)
+        expected_result = 'Имя Отчество'
+        self.verify(expected_result, actual_result)
+
+    @allure.step('verify doctor name in user account, regular sessions page - Имя Отчество ')
+    def verify_doctor_name_regular_sessions_page(self):
+        actual_result = self.get_text_title_of_element(UserAccountLocators.DOCTOR_NAME_REGULAR_SESSIONS_PAGE)
+        expected_result = 'Имя Отчество'
+        self.verify(expected_result, actual_result)

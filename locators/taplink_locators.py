@@ -18,5 +18,8 @@ class TaplinkLocators:
                                               " div[class='is-ltr'] div div:nth-child(1)")
     TO_BECOME_PSYCHOLOGISTS_TEAM_MEMBER = (By.CSS_SELECTOR, "div[class='block-item block-link b-83afb8b9e34811ed85b1"
                                                             "ac1f6bd74bd8'] div[class='is-ltr'] div div:nth-child(1)")
-    GET_FREE_CONSULTATION_BUTTON = (By.XPATH, "//div[@class='block-item block-link b-b31cd06e4bc711ee80bcac1f6bd8b194']"
-                                              "//div[@class='is-ltr']//div//div[1]")
+    FOR_NEW_USERS_990_BTN = (By.CSS_SELECTOR, "div[class='block-item block-link b-5a273d3783e211ee80bcac1f6bd8b194'] "
+                                              "div[class='is-ltr'] div div:nth-child(1)")
+    FREE_DIAGNOSTIK_BTN = (By.CSS_SELECTOR, "div[class='block-item block-link b-ada8d277a57611eeb622ac1f6bd74bd8'] "
+                                            "div[class='is-ltr'] div div:nth-child(1)")
+

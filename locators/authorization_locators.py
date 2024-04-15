@@ -1,7 +1,6 @@
 from selenium.webdriver.common.by import By
 
 class AuthorizationLocators:
-    CLOSE_WIDGET_BUTTON = (By.XPATH, '//jdiv[@id="jivo_close_button"]')
     COOKIE_BUTTON = (By.CSS_SELECTOR, '.animate__button-filled.button__medium-red-filled')
     LOGIN_BUTTON = (By.CSS_SELECTOR, ".animate__button-outline.button__small-small-width-blue-outline")
     LOGIN_WITH_PASSWORD_BUTTON = (By.CSS_SELECTOR, ".auth__switch-link.link__1")
@@ -17,13 +16,10 @@ class AuthorizationLocators:
     CODE_FIELD = (By.CSS_SELECTOR, "#code")
     AUTH_CODE_BUTTON = (By.CSS_SELECTOR, "#auth-code__btn")
 
-    CHAT_MENU_NAVIGATION = (By.XPATH, "//main[@class='page-main']//a[3]//div[1]")
+    CHAT_MENU_NAVIGATION = (By.XPATH, "//main[contains(@class,'page-main')]//a[3]//div[1]")
     CHAT_TEXT_FIELD = (By.CSS_SELECTOR, "#message-text__input")
     SEND_MSG_CHAT_BTN = (By.CSS_SELECTOR, "button[type='submit'] span")
     MESSAGE_TEXT = (By.XPATH, "//div[@id='1647']//div[@class='block__message-text'][normalize-space()='Hello, World!']")
-
-    # (// div[@class ='block__message-status'])[3]
-    #'// div[ @class = 'block__message.my__message.last-message'] // div[@class ='block__message-text'][normalize-space()='Hello, World!']'
 
     CHAT_MENU_NAVIGATION_PSYCHOLOGIST = (By.XPATH, "//nav[@class='account__menu']//div[1]")
     CHAT_W_CLIENT_AYGUL = (By.XPATH, "//h3[normalize-space()='Aygul-test']")
@@ -50,7 +46,7 @@ class AuthorizationLocators:
 
     MY_BALANCE_MENU_TITLE = (By.XPATH, "//a[contains(@class,'balance-link')]//div[1]")
     BUY_PACKAGE_BUTTON = (By.XPATH, "//button[contains(text(),'Купить пакет')]")
-    PACKAGE_4_SESSIONS_BUY_BUTTON = (By.XPATH, "//div[@class='package__items']//div[1]//a[1]//button[1]")
+
     CARD_RF_BUTTON_PACKAGE = (By.CSS_SELECTOR, "label[for='russian']")
     FOREIGN_CARD_PACKAGE = (By.CSS_SELECTOR, "label[for='foreign']")
     PAY_ONLINE_ORDER_BUTTON_PACKAGE = (By.CSS_SELECTOR, "button[type='submit']")
@@ -100,13 +96,6 @@ class AuthorizationLocators:
     TEXT_SENT_LINK_TO_RECOVER_PASSWORD = (By.XPATH, "//p[contains(text(),"
                                                     "'На Ваш email отправлена ссылка для восстановления ')]")
     REGISTER_HYPERTEXT = (By.XPATH, "//span[contains(text(),'Зарегистрироваться')]")
-    # EMAIL_FIELD_REGISTRATION_FORM = (By.CSS_SELECTOR, "#email")
-    # PASSWORD1_FIELD_REGISTRATION_FORM = (By.CSS_SELECTOR, "#password1")
-    # PASSWORD2_REPEAT_FIELD_REGISTRATION_FORM = (By.CSS_SELECTOR, "#password2")
-    # FIRST_CHECKBOX_CONSENT_REGISTRATION_FORM = (By.XPATH, "//label[1]//span[1]")
-    # REGISTER_BUTTON = (By.XPATH, "//button[@id='registration_form_input_btn']")
-    # REGISTRATION_INFO_TEXT = (By.XPATH, "//p[contains(text(),'На Ваш email отправлена ссылка для подтверждения э')]")
-    # REGISTRATION_ERROR_MESSAGE = (By.XPATH, "//p[@class='user_data__message-error slowly__show-error']")
 
     OOO_LIFE_HELP_FOOTER = (By.XPATH, "//div[contains(text(),'© 2023 ООО “Лайф Хелп”')]")
     FOOTER_SOCIAL_NETWORKS = (By.CSS_SELECTOR, ".footer__link-social-title")
@@ -129,7 +118,6 @@ class AuthorizationLocators:
 
     ERROR_MESSAGE_WRONG_PASSWORD_AUTH_PAGE = (By.CSS_SELECTOR, ".auth__form-password-error.err-txt.active")
     ERROR_MESSAGE_WRONG_SMS_CODE_AUTH_PAGE = (By.CSS_SELECTOR, ".auth__form-code-error.err-txt.active")
-    # AUTH_CODE_BUTTON = (By.CSS_SELECTOR, "#auth-code__btn")
 
     COME_BACK_TO_CABINET_BUTTON = (By.XPATH, "(//button[contains(text(),'Перейти в личный кабинет')])[1]")
     SESSION_WAITS_FOR_PAYMENT_TEXT = (By.XPATH, "//div[@class='account__my-notes-results-card-status grid__area-payed"
@@ -150,7 +138,7 @@ class AuthorizationLocators:
                                                       "button__medium-blue-filled payment_cansel_btn js-close-modal']")
     GOOD_BUTTON_AFTER_DENY_ORDER_PAYMENT = (By.XPATH, "//button[contains(text(),'Хорошо')]")
     CLIENTS_AND_AIMS_MENU_PSYCHOLOGIST = (By.XPATH, "//span[contains(text(),'Клиенты и цели')]")
-    SELECT_AYGUL_TEST_CLIENTS_AIMS = (By.CSS_SELECTOR, "div[class='account__my-notes-tab-item active'] a:nth-child(11)")
+    SELECT_AYGUL_TEST_CLIENTS_AIMS = (By.CSS_SELECTOR, "div[class='account__my-notes-tab-item active'] a:nth-child(1)")
     THREE_DOTS_PSYCHOLOGIST_CLIENTS_AIM = (By.XPATH, "//a[@class='client__context-menu-button']//*[name()='svg']")
     CREATE_NEW_SESSION_PSYCHOLOGIST = (By.CSS_SELECTOR, ".context__menu-link.create__new-session")
     TO_CREATE_BUTTON_CREATE_SESSION_PSYCHOLOGIST = (By.CSS_SELECTOR, "div[class='form__buttons'] button"
@@ -165,7 +153,9 @@ class AuthorizationLocators:
 
     TEST_ACTION_SELECT_PSYCHOLOGIST_BUTTON = (By.XPATH, "//button[contains(text(),'Выбрать психолога')]")
 
-    I_HAVE_PROMOCODE_TITLE_SESSION_ORDER_PAGE = (By.CSS_SELECTOR, "div[class='info__client-promo'] a")
+    PROMOCODE_FIELD_ORDER_PAGE = (By.CSS_SELECTOR, "#promo")
+    APPLY_PROMOCODE_BTN_ORDER_PAGE = (By.CSS_SELECTOR, ".use-promocode__btn.primary__button-filled.azure.w-13-r")
+    SUMMARY_PRICE_ORDER_PAGE = (By.XPATH, "//span[@class='summary-price'][normalize-space()='0']")
     ENTER_PROMOCODE_FIELD_SESSION_ORDER_PAGE = (By.CSS_SELECTOR, "input[placeholder='Введите промокод']")
     PAYMENT_BUTTON_ORDER_PAGE = (By.XPATH, "//span[@class='order__detail-price button__price']")
     SUBMIT_PROMOCODE_BUTTON_SESSION_ORDER_PAGE = (By.XPATH, "//button[contains(text(),'Применить')]")
@@ -173,7 +163,7 @@ class AuthorizationLocators:
                                              "[normalize-space()='0,00']")
 
     ORDER_SESSION_IN_PACKAGE = (By.XPATH, "(//span[contains(text(),'Записаться на консультацию')])[1]")
-    SELECT_TIME_TO_ORDER_SESSION_PACKAGE = (By.XPATH, "(//label)[7]")
+    SELECT_TIME_TO_ORDER_SESSION_PACKAGE = (By.XPATH, "(//label)[5]")
     SUBMIT_BUTTON_ORDER_SESSION_PACKAGE = (By.XPATH, "//button[contains(text(),'Записаться')]")
     ORDERED_TIME_SESSION_PACKAGE_MY_BALANCE = (By.CSS_SELECTOR, "//p[@class='package__detail-date-time']")
     GO_TO_VIDEOSESSION_BUTTON_PACKAGE_SESSION = (By.XPATH, "//a[contains(text(),'Перейти к сеансу')]")
@@ -209,11 +199,13 @@ class AuthorizationLocators:
     NO_CONTINUE_PAYMENT_BUTTON = (By.CSS_SELECTOR, "#continue-payment")
     YES_SEE_PACKAGES_OFFER_BUTTON = (By.CSS_SELECTOR, ".primary__button-filled.full-width.blue")
 
+    PACKAGE_54_BUTTON_ORDER_PAGE = (By.CSS_SELECTOR, "label[for='quantity-54'] span")
     TINKOFF_INSTALLMENTS_PACKAGE54_BUTTON = (By.CSS_SELECTOR, ".tinkoff-button__title")
     TINKOFF_BUTTON_CONTINUE = (By.CSS_SELECTOR, "#tinkoff-button")
     TINKOFF_INSTALLMENT_APPLICATION_PAGE_TITLE = (By.CSS_SELECTOR, "div[class='dmbWyicqvIkPm_kBWYv4 zuVgfesmeNN8lpE0RZW"
                                                                    "R vYq2A134kQnyq8OkDyqn'] h3")
     TINKOFF_INSTALLMENTS_CONDITIONS = (By.CSS_SELECTOR, "#условия")
+    PACKAGE54_12_MONTH_INSTALLMENTS_BTN = (By.XPATH, "//button[contains(text(),'12 МЕСЯЦЕВ | 10 416 ₽/МЕС')]")
 
     SELECT_TIME_FROM_MAIN_SCHEDULE_PSYCHOLOGIST = (By.XPATH, "(//label)[15]")
     GO_TO_PAYMENT_BUTTON = (By.XPATH, "//button[contains(text(),'Перейти к оплате')]")
@@ -222,7 +214,6 @@ class AuthorizationLocators:
                                                    "[class='animate__button-filled button__medium-blue-filled']")
 
     PACKAGE_TEST_NAME_PAYMENT_PAGE = (By.CSS_SELECTOR, ".payment__existing-cards-radio-number")
-    # ".payment__existing-cards-radio-number"
 
     VK_AUTHORIZATION_BUTTON = (By.CSS_SELECTOR, "a[title='ВКонтакте']")
     VK_AUTHORIZATION_PAGE_TITLE = (By.XPATH, "//div[contains(text(),'Вход в VK ID')]")
@@ -236,21 +227,16 @@ class AuthorizationLocators:
     USER_AVATAR_NAME = (By.CSS_SELECTOR, ".page-header__user-name")
     PAY_BY_CARD_TINKOFF_KASSA_PAGE = (By.XPATH, "//span[contains(text(),'Оплатить картой')]")
     RECAPTCHA_CONFIDENTIALITY_TITLE = (By.CSS_SELECTOR, "(.rc-anchor-pt)[1]")
-    RAPID_PAY_TINKOFF_PAGE = (By.CSS_SELECTOR, "div[class='tui-text_h6 title'] span[automation-id='payment-item__title']")
-    # By.XPATH, "//span[contains(text(),'Быстрая оплата')]"
+    RAPID_PAY_TINKOFF_PAGE = (By.XPATH, "//span[contains(text(),'Быстрая оплата')]")
 
-
-    # ERROR_MESSAGE_REGISTRATION_FORM = (By.CSS_SELECTOR, ".user_data__message-error.slowly__show-error")
-    # ERROR_MESSAGE_WRONG_REPEAT_PASSWORD_REG_FORM = (By.CSS_SELECTOR, ".user_data__message-error.slowly__show-error")
-
-    # SELECT_ELENA_KALKAN_PSYCHOLOGYST_LIST = (By.XPATH, "//a[@class='choose-specialist__choices-item active']")
+    SUCCESSFUL_PAYMENT_BY_PACKAGE_MSG = (By.CSS_SELECTOR, ".message__heading")
     SELECT_TIME_3_RAPID_PANKOVA = (By.CSS_SELECTOR, "body > div:nth-child(3) > main:nth-child(2) > section:nth-child(1)"
                                                     " > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > "
                                                     "div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > "
                                                     "div:nth-child(1) > div:nth-child(2) > form:nth-child(2) > "
                                                     "label:nth-child(6) > span:nth-child(2)")
 
-    # RAPID_AUTH_BUTTON_REGISTRATION_PAGE = (By.XPATH, "//button[contains(text(),'Быстрый вход')]")
+
     AVATAR_ORDER_PAGE = (By.CSS_SELECTOR, ".page-header__user-name")
 
     PACKAGE_4_PAYMENT_CLOUDPAYMENTS_PAGE = (By.XPATH, "//div[@class='payment__details-data']//div[@class='payment__"
@@ -282,7 +268,7 @@ class AuthorizationLocators:
     SELECT_NEW_DOCTOR_PACKAGE_SESSION = (By.CSS_SELECTOR, ".select__session-package-new-doctor")
     DO_NOT_DENY_SESSION_BUTTON = (By.XPATH, "//button[contains(text(),'Нет, не отменять')]")
     NAME_VIDEO_SESSION_HEADING = (By.CSS_SELECTOR, ".account__my-video-heading")
-    # REGULAR_SESSION_ORDER_ICON = (By.CSS_SELECTOR, "li:nth-child(1) div:nth-child(1) div:nth-child(2) span:nth-child(1)")
+
     REGULAR_SESSION_ORDER_ICON = (By.CSS_SELECTOR, "body > div:nth-child(4) > main:nth-child(2) > div:nth-child(1) > "
                                                    "div:nth-child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-"
                                                    "child(1) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1)"
@@ -331,3 +317,36 @@ class AuthorizationLocators:
     ERROR_CERTIFICATE_DOESNOT_EXIST = (By.CSS_SELECTOR, ".activate__certificate-error.active")
     FIRST_ORDER_TIME = (By.XPATH, "//div[@class='swiper-slide swiper-slide-next']//label[1]")
     RAPID_ORDER_TIME = (By.XPATH, "//div[@class='choose__specialist-schedule-left']//label[1]")
+
+    ORANGE_PAY_BUTTON_ORDER_PAGE = (By.CSS_SELECTOR, ".payment-button__text")
+    FOREIGN_CARD_ORDER_PAGE = (By.CSS_SELECTOR, "label[for='foreign']")
+
+    SESSION_2950_PRICE_ORDER_PAGE = (By.CSS_SELECTOR, "div[class='content-left__line package-info RUB active'] "
+                                                      "span[class='price-price']")
+
+    CONTRACT_OFFER_TITLE_AUTH_PAGE = (By.XPATH, "//a[contains(text(),'условия пользовательского соглашения')]")
+    AGREEMENT_PERSONAL_TITLE_AUTH_PAGE = (By.XPATH, "//a[contains(text(),'обработку персональных данных')]")
+    CONSENT_MAILING_TITLE_AUTH_PAGE = (By.XPATH, "//a[contains(text(),'согласие')]")
+    PRICE_2950_QUESTIONNAIRE_GENERAL_PAGE = (By.XPATH, "//div[@class='form__radio-text']//div[1]")
+
+    FIRST_ORDER_TIME_DOCTOR_PAGE_AFTER_QUESTIONNAIRE = (By.XPATH, "//div[@class='choose__specialist-schedule-"
+                                                                  "left']//label[1]")
+    TO_ORDER_RAPID_TIME_BTN_DOCTOR_PAGE_AFTER_QUESTIONNAIRE = (By.CSS_SELECTOR, ".quick__appointment.animate__button-"
+                                                                                "filled.button__medium-small-width-blue-filled")
+    FIND_PSYCHOLOGIST_ACCOUNT_BTN = (By.CSS_SELECTOR, ".account__find-psycho")
+
+    TITLE_ORDER_PAGE = (By.CSS_SELECTOR, ".order-header__text")
+
+    PACKAGE_4_BUTTON_NEW_ORDER_PAGE = (By.CSS_SELECTOR, "label[for='quantity-4'] span")
+    TO_PAY_ORANGE_BUTTON_ORDER_PAGE = (By.CSS_SELECTOR, ".price-price.payment-button__price")
+
+    CURRENCY_ORANGE_BTN_TO_PAY_ORDER_PAGE = (By.CSS_SELECTOR, ".payment-button.price-currency")
+
+    PACKAGE_8_BUTTON_NEW_ORDER_PAGE = (By.CSS_SELECTOR, "label[for='quantity-8'] span")
+    PACKAGE_12_BUTTON_NEW_ORDER_PAGE = (By.CSS_SELECTOR, "label[for='quantity-12'] span")
+    PACKAGE_54_BUTTON_NEW_ORDER_PAGE = (By.CSS_SELECTOR, "label[for='quantity-54']")
+    ONETIME_PAYMENT_PACKAGE_54_BUTTON_NEW_ORDER_PAGE = (By.XPATH, "//span[contains(text(),'Единоразовый платеж')]")
+    USD_PAYMENT_BUTTON_NEW_ORDER_PAGE = (By.CSS_SELECTOR, "label[for='usd']")
+    EURO_PAYMENT_BUTTON_NEW_ORDER_PAGE = (By.CSS_SELECTOR, "label[for='eur']")
+
+    REGISTRATION_TEXT_AUTH_PAGE = (By.XPATH, "//span[contains(text(),'Зарегистрироваться')]")

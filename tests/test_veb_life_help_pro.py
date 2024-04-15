@@ -21,7 +21,7 @@ def test_registration_veb_lh(setup_veb_lh, veb_lh_page):
 def test_present_certificate_veb_lh(setup_veb_lh, veb_lh_page):
     veb_lh_page.click_to_present_certificate_button_veb_lh()
     veb_lh_page.move_to_new_certificate_page()
-    veb_lh_page.get_url('https://veb.life-help.pro/gift')
+    veb_lh_page.get_url('https://lifehelp.pro/gifts')
 
 #4 - проверка перехода на страницу службы поддержки в Whatsapp по клику на виджет Whatsapp
 def test_whatsapp_widget_veb_lh(setup_veb_lh, veb_lh_page):
@@ -66,9 +66,33 @@ def test_query_20_min_session_veb_lh(setup_veb_lh, veb_lh_page):
     veb_lh_page.click_send_order_20min_session_button_veb_lh()
     veb_lh_page.verify_successful_send_request_20min_session_veb_lh()
 
-#10 -
-# def test_presence_utm_url_veb_lh(setup_veb_lh, veb_lh_page):
-#     veb_lh_page.click_to_login_button_veb_lh()
-#     veb_lh_page.verify_presence_utm_url_veb_lh()
+#10 - проверка перехода на страницу группы life-help.pro ВКонтакте по клику на виджет VK
+def test_vk_button_footer_veb_lh(veb_lh_page):
+    veb_lh_page.scroll_till_bottom_veb_lh_page()
+    veb_lh_page.click_to_vk_button_veb_lh()
+    veb_lh_page.move_to_new_document_page()
+    veb_lh_page.get_url('https://vk.com/life_help')
+
+#11 - проверка перехода на страницу группы life-help.pro Telegram по клику на виджет TG
+def test_telegram_group_button_footer_veb_lh(veb_lh_page):
+    veb_lh_page.scroll_till_bottom_veb_lh_page()
+    veb_lh_page.click_to_telegram_group_button_veb_lh()
+    veb_lh_page.move_to_new_document_page()
+    veb_lh_page.get_url('https://t.me/life_help_pro')
+
+#12 - проверка перехода на страницу регистрации life-help.pro по клику на кнопку "Зарегистрироваться" в футере страницы
+def test_register_button_footer_veb_lh(veb_lh_page):
+    veb_lh_page.scroll_till_bottom_veb_lh_page()
+    veb_lh_page.click_to_register_button_footer_veb_lh()
+    veb_lh_page.get_url('https://life-help.ru/auth/?utm_source=veb.life-help.pro&utm_medium=&utm_campaign=&utm_content'
+                        '=&utm_term=%C2%A0')
+
+#13 - проверка перехода на страницу с документом "Договор оферты"
+def test_oferta_document_veb_lh(setup_veb_lh, veb_lh_page):
+    veb_lh_page.scroll_till_bottom_veb_lh_page()
+    veb_lh_page.click_to_oferta_button_veb_lh()
+    veb_lh_page.move_to_new_document_page()
+    veb_lh_page.get_url('https://life-help.ru/contract-offer/')
+
 
 

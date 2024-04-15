@@ -50,8 +50,7 @@ class TaplinkPage(BaseObject):
 
     @allure.step('verify url of telegram care page')
     def verify_url_telegram_care_page(self):
-        self.get_url('https://t.me/+79600645557?tpclid=facebook.PAAabbNtUe7s7U-9lF4ZdkavdAN4ryIbWyZEIi'
-                                  '9sAtHUZn8dwG-RzN0rtcFmg')
+        self.get_url('https://t.me/+79600645557')
 
     @allure.step('click to "ask question in whatsapp" btn taplink page')
     def click_to_ask_question_whatsapp_btn_taplink(self):
@@ -71,12 +70,22 @@ class TaplinkPage(BaseObject):
         self.get_url('https://docs.google.com/forms/d/e/1FAIpQLSenANZG0ddW6iTI-ZSd65ztBdCWSKYKPrRBQjYIJ49kDBofcA'
                      '/viewform')
 
-    @allure.step('click to "get free consultation after questionnaire" btn taplink page')
-    def click_to_get_free_consultation_button_taplink(self):
-        self.to_click(TaplinkLocators.GET_FREE_CONSULTATION_BUTTON)
+    @allure.step('click to "become a psychologists team member" btn taplink page')
+    def click_to_new_users_990_btn_taplink(self):
+        self.to_click(TaplinkLocators.FOR_NEW_USERS_990_BTN)
 
-    @allure.step('verify url of questionnaire page')
-    def verify_url_questionnaire_page(self):
-        self.get_url('https://life-help-anketa.mrqz.me/?roistat=Instagram_smm%20LifeHelp_marquiz_anketa&utm_campaign'
-                     '=smm%20LifeHelp&utm_medium=marquiz_anketa%3D&utm_source=Instagram&tpclid=facebook.PAAabbNtUe7s7U'
-                     '-9lF4ZdkavdAN4ryIbWyZEIi9sAtHUZn8dwG-RzN0rtcFmg')
+    @allure.step('verify url of new users for 990 questionnaire mrqz page')
+    def verify_url_new_users_990_questionnaire_mrqz_page(self):
+        self.get_url('https://lifehelp.pro/BlackFriday2023?roistat=Instagram_smm+LifeHelp_Taplink&utm_campaign=smm+'
+                     'LifeHelp&utm_content=BlackFriday23&utm_source=Instagram&utm_term=Taplink&tpclid=facebook.'
+                     'PAAabbNtUe7s7U-9lF4ZdkavdAN4ryIbWyZEIi9sAtHUZn8dwG-RzN0rtcFmg')
+
+    @allure.step('click to "free diagnostik" btn taplink page')
+    def click_to_free_daignostik_btn_taplink(self):
+        self.to_click(TaplinkLocators.FREE_DIAGNOSTIK_BTN)
+
+    @allure.step('verify url of lifehelp.pro page')
+    def verify_url_lifehelp_pro_page(self):
+        self.get_url('https://lifehelp.pro/20mins?roistat=Instagram_smm+LifeHelp_Taplink_20min&utm_campaign=smm+'
+                     'LifeHelp&utm_content=20min&utm_source=Instagram&utm_medium=Taplink')
+

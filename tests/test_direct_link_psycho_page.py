@@ -16,29 +16,19 @@ def test_video_psychologist(setup_direct_link, direct_psychologist_page):
     direct_psychologist_page.click_to_psychologist_video()
     direct_psychologist_page.verify_video_frame_psychologist_page()
 
-#4- проверяем запись на консультацию существующего клиента
-# def test_order_session_3rd_rapid_time(setup_direct_link, direct_psychologist_page):
-#     direct_psychologist_page.select_3rd_time_session_rapid_schedule_psychologist()
-#     direct_psychologist_page.scroll_to_rapid_payment_button()
-#     direct_psychologist_page.click_rapid_go_payment_btn()
-#     direct_psychologist_page.set_client_name()
-#     direct_psychologist_page.set_client_phone()
-#     direct_psychologist_page.set_client_email()
-#     direct_psychologist_page.click_green_payment_btn()
+#4 - проверка стоимости инд50 консультаци "2950.00 ₽" на карточке психолога по прямой ссылке
+def test_price_2950_psychologist_page(setup_direct_link, direct_psychologist_page):
+    direct_psychologist_page.verify_session_price_2950_rubbles_psychologist_page()
 
+#5 - проверка стоимости инд90 консультаци "4200.00 ₽" на карточке психолога по прямой ссылке
+def test_price_4200_psychologist_page(setup_direct_link, direct_psychologist_page):
+    direct_psychologist_page.verify_session_price_4200_rubbles_psychologist_page()
 
+#6 - проверка стоимости парной консультаци "4850.00 ₽" на карточке психолога по прямой ссылке
+def test_price_4850_psychologist_page(setup_direct_link, direct_psychologist_page):
+    direct_psychologist_page.verify_session_price_4850_rubbles_psychologist_page()
 
+#7 - проверка Имени Отчества психолога на карточке психолога по прямой ссылке
+def test_name_psychologist_page(setup_direct_link, direct_psychologist_page):
+    direct_psychologist_page.verify_doctor_name_user_terminated_session()
 
-
-# проверяем наличие слота времени в расписании (первый слот)
-# def test_presence_order_time(setup_direct_link, direct_psychologist_page):
-#     direct_psychologist_page.check_presence_first_order_time()
-#
-# # проверяем возможность выбрать время и кликнуть на "Перейти к оплате" с переходом на страницу заказа
-# def test_order_session(setup_direct_link, direct_psychologist_page):
-#     direct_psychologist_page.scroll_to_schedule()
-#     direct_psychologist_page.select_rapid_order_time()
-
-    #print(PsychologistPageLocators.RAPID_ORDER_TIME)
-    # direct_psychologist_page.scroll_to_element()
-    # direct_psychologist_page.click_to_move_to_payment_button()

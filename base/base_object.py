@@ -82,3 +82,12 @@ class BaseObject:
         """
         window_height = self.driver.execute_script("return window.innerHeight")
         self.driver.execute_script(f"window.scrollTo(0, 1080);")
+
+    def move_to_page_top(self):
+        """
+        method to scroll till the top of the page
+        :param: size of the window (1920, 1080)
+        :return: scroll to the page bottom
+        """
+        window_height = self.driver.execute_script("return window.innerHeight")
+        self.driver.execute_script(f"window.scrollTo(1920, 1080);")

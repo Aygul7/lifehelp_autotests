@@ -18,10 +18,17 @@ class VebLifeHelpLocators:
                                        "[contains(text(),'Политика конфиденциальности')]")
     CONSENT_MAILING_VEB_LH = (By.XPATH, "//a[@class='btn btn-legacy hvr-fade font-text css298']//span[@class='text']"
                                         "[contains(text(),'Согласие на получение информационных рассылок')]")
+    OFERTA_DOCUMENT_VEB_LH = (By.XPATH, "//a[@class='btn btn-legacy hvr-fade font-text css298']//span[@class='text']"
+                                        "[contains(text(),'Договор оферты')]")
     ORDER_20_MIN_SESSION_VEB_LH = (By.XPATH, "//button[@class='btn btn-legacy font-text css60']//span[@class='text']"
                                              "[contains(text(),'Записаться на бесплатную 20-минутную консультацию')]")
     NAME_20MIN_ORDER_VEB_LH = (By.CSS_SELECTOR, "input[autocomplete='name']")
     PHONE_20MIN_ORDER_VEB_LH = (By.CSS_SELECTOR, "input[autocomplete='tel']")
     SEND_20MIN_ORDER_VEB_LH = (By.XPATH, "//span[contains(text(),'ЗАПИСАТЬСЯ НА ПОДБОР')]")
     SUCCESSFUL_ANSWER_SEND_ORDER_20MIN_VEB_LH = (By.XPATH, "(//div[@class='swal-title'])[1]")
+    VK_WIDGET_VEB_LH = (By.XPATH, "//div[@class='xs-force-center soc-icon paddings-10px white css280']//"
+                                  "a[@class='link vk']")
+    TELEGRAM_GROUP_WIDGET_VEB_LH = (By.XPATH, "//div[@class='xs-force-center soc-icon paddings-10px white css280']//"
+                                              "a[@class='link tg']")
+    TO_REGISTER_BUTTON_FOOTER = (By.XPATH, "//a[@class='btn btn-legacy hvr-shutter-out-horizontal font-header css296']")
 
